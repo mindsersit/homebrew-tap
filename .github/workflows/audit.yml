@@ -1,0 +1,51 @@
+name: audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # A machine in another repository writes the formula, so what's likeliest to break it is a
+  # change nobody made here. Weekly, this also catches a release asset deleted or replaced.
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  formula:
+    name: style and audit
+    # macOS runners ship Homebrew. The rules that matter apply only to files laid out as a tap,
+    # hence the move below rather than a path argument.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: homebrew-tap
+      - name: Put it where brew expects a tap
+        run: |
+          taps="$(brew --repository)/Library/Taps/mindsersit"
+          mkdir -p "$taps"
+          mv homebrew-tap "$taps/homebrew-tap"
+      - name: Style and audit
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          shopt -s nullglob
+          formulae=("$(brew --repository)/Library/Taps/mindsersit/homebrew-tap/Formula"/*.rb)
+          if [ ${#formulae[@]} -eq 0 ]; then
+            echo "no formulae yet: a release writes the first"
+            exit 0
+          fi
+          brew style mindsersit/tap
+          # `--online` needs the network, so it isn't a reason for a pull request to go red.
+          if [ "$EVENT" = schedule ]; then
+            brew audit --strict --online --tap mindsersit/tap
+          else
+            brew audit --strict --tap mindsersit/tap
+          fi

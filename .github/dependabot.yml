@@ -1,0 +1,11 @@
+version: 2
+
+updates:
+  # The only moving parts here are the actions in audit.yml: a release writes the formula.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']
