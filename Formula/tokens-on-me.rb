@@ -4,8 +4,8 @@
 class TokensOnMe < Formula
   desc "Start your coding client on an allowance someone gave you"
   homepage "https://tokens-on.me"
-  version "0.1.0"
-  # Proprietary: the terms are in LICENSE, in each archive.
+  # No `version`: Homebrew reads it from the URLs' `cli-v…`, and `audit --strict` calls the line
+  # redundant. Proprietary: the terms are in LICENSE, in each archive.
   license :cannot_represent
 
   on_macos do
