@@ -32,6 +32,9 @@ jobs:
           taps="$(brew --repository)/Library/Taps/mindsersit"
           mkdir -p "$taps"
           mv homebrew-tap "$taps/homebrew-tap"
+          # Homebrew loads a tap's formulae only once it is trusted (docs.brew.sh/Tap-Trust):
+          # this is the tap being checked, so all of it.
+          brew trust mindsersit/tap
       - name: Style and audit
         env:
           EVENT: ${{ github.event_name }}
