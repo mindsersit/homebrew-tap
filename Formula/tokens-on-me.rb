@@ -10,24 +10,24 @@ class TokensOnMe < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.1/tom-aarch64-apple-darwin.tar.gz"
-      sha256 "023ba9448d5accce9f51bfa87f52070883be2e9b79845a6c6e04f9369c0d980c"
+      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.2/tom-aarch64-apple-darwin.tar.gz"
+      sha256 "55d762e1037fe607268cfe5550541d3e58c9cf03652254a392c0b6513f7ed25a"
     end
     on_intel do
-      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.1/tom-x86_64-apple-darwin.tar.gz"
-      sha256 "2e55f7aed7c28fcbb7bd8097afe435f20ab3f07a5a72c10ca2bdba678ae6f616"
+      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.2/tom-x86_64-apple-darwin.tar.gz"
+      sha256 "e2ab871c8a599775ec7b484f0ef3bb583341ee03d255e5000d3e04674f7d1b35"
     end
   end
 
   on_linux do
     # Static musl, so one build covers every distribution.
     on_arm do
-      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.1/tom-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "8a8d361b202e1645c2ef22835b070899281a99471a1ef715cc5086a402ee4b20"
+      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.2/tom-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "734794bd134dd0d2908b3d18107737e81b038d33c3ad54dbdea109a51a3316fe"
     end
     on_intel do
-      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.1/tom-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "ba5df87c714141a7c0676ae605686d6306f9fdb796f298c38b11887bc42f9fc4"
+      url "https://github.com/mindsersit/homebrew-tap/releases/download/cli-v0.1.2/tom-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "e45d5c179a869f38f934b870e4e40faadd0652d1e8b54dc5e42fa16349ddc6af"
     end
   end
 
